@@ -1,0 +1,123 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>zuck.js</title>
+
+        <link rel="icon" href="{% static 'zuck/ICON.png' %}" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=0"
+        />
+
+        <!-- demo styles -->
+        <link rel="stylesheet" href="{% static 'zuck/demo/style.css' %}" />
+
+        <!-- lib styles -->
+        <link rel="stylesheet" href="{% static 'zuck/dist/zuck.min.css' %}" />
+
+        <!-- lib skins -->
+        <link
+            rel="stylesheet"
+            href="{% static 'zuck/dist/skins/snapgram.css' %}"
+        />
+        <link
+            rel="stylesheet"
+            href="{% static 'zuck/dist/skins/vemdezap.css' %}"
+        />
+        <link
+            rel="stylesheet"
+            href="{% static 'zuck/dist/skins/facesnap.css' %}"
+        />
+        <link
+            rel="stylesheet"
+            href="{% static 'zuck/dist/skins/snapssenger.css' %}"
+        />
+    </head>
+
+    <body>
+        <h1 id="header">&nbsp;</h1>
+
+        <a
+            href="https://ramon.codes/projects/zuck.js"
+            target="_blank"
+            class="disclaimer"
+        >
+            <img src="{% static 'zuck/ICON.png' %}" alt="zuck.js logo" />
+
+            <p>
+                This a demonstration of <strong>zuck.js</strong> javascript
+                library.
+            </p>
+            <p>
+                Not associated with Facebook, Instagram, WhatsApp or Snapchat.
+            </p>
+        </a>
+
+        <div id="stories" class="storiesWrapper"></div>
+
+        <div class="skin">
+            Choose your theme:
+
+            <select
+                id="skin"
+                onchange="changeSkin(this.options[this.selectedIndex].value);"
+            >
+                <option value="Snapgram">Snapgram (without fullscreen)</option>
+                <option value="FaceSnap">FaceSnap (with fullscreen)</option>
+                <option value="VemDeZAP">VemDeZAP (timeline + arrows)</option>
+                <option value="Snapssenger">Snapssenger (with previews)</option>
+            </select>
+        </div>
+
+        <script src="{% static 'zuck/dist/zuck.min.js' %}"></script>
+        <script src="{% static 'zuck/demo/script.js' %}"></script>
+
+
+        <h1>Sometest</h1>
+        {% for story in stories %}
+
+
+        <script>
+            var currentSkin = getCurrentSkin();
+            var stories = new Zuck('stories', {
+                backNative: true,
+                previousTap: true,
+                skin: currentSkin['name'],
+                autoFullScreen: currentSkin['params']['autoFullScreen'],
+                avatars: currentSkin['params']['avatars'],
+                paginationArrows: currentSkin['params']['paginationArrows'],
+                list: currentSkin['params']['list'],
+                cubeEffect: currentSkin['params']['cubeEffect'],
+                localStorage: true,
+                stories: [
+                    Zuck.buildTimelineItem(
+                        'ramon',
+                        'THE_STORY_OWNER_PLACEHOLDER',
+                        'THE_USERNAME_PLACEHOLDER',
+                        'https://ramon.codes',
+                        timestamp(),
+                        [
+                            [
+                                'ramon-1',
+                                'photo',
+                                3,
+                                // '{% for img in story.images.all %}'
+                                '{{ img.img.url }}',
+                                '{{ img.img.url }}',
+                                // '{% endfor %}'
+                                '',
+                                false,
+                                false,
+                                timestamp(),
+                            ],
+                        ]
+                    ),
+                ],
+            });
+        </script>
+
+
+        {% endfor %}
+    </body>
+</html>
