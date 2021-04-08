@@ -75,7 +75,6 @@
 
 
         <h1>Sometest</h1>
-        {% for story in stories %}
 
 
         <script>
@@ -91,6 +90,7 @@
                 cubeEffect: currentSkin['params']['cubeEffect'],
                 localStorage: true,
                 stories: [
+                    // {% for story in stories %}
                     Zuck.buildTimelineItem(
                         'ramon',
                         'THE_STORY_OWNER_PLACEHOLDER',
@@ -113,11 +113,11 @@
                             ],
                         ]
                     ),
+                    // {% endfor %}
                 ],
             });
         </script>
 
 
-        {% endfor %}
     </body>
 </html>
