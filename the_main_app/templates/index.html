@@ -92,14 +92,14 @@
                 stories: [
                     // {% for story in stories %}
                     Zuck.buildTimelineItem(
-                        'ramon',
+                        '{{story.id}}',
                         'THE_STORY_OWNER_PLACEHOLDER',
                         'THE_USERNAME_PLACEHOLDER',
-                        'https://ramon.codes',
+                        'https://{{story.id}}.codes',
                         timestamp(),
                         [
                             [
-                                'ramon-1',
+                                '{{story.id}}-1',
                                 'photo',
                                 3,
                                 // '{% for img in story.images.all %}'
